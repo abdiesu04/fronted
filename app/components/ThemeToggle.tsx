@@ -6,24 +6,34 @@ export const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    // Check system preference and localStorage on mount
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    setIsDark(savedTheme === 'dark' || (!savedTheme && systemPrefersDark));
+  }, []);
+
+  useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [isDark]);
 
   return (
     <button
       onClick={() => setIsDark(!isDark)}
-      className="fixed top-4 right-4 p-2 rounded-full bg-white/30 backdrop-blur-sm 
-                dark:bg-gray-800/30 shadow-lg hover:shadow-xl transform hover:scale-110
-                transition-all duration-300 group"
+      className="fixed top-4 right-4 p-3 rounded-full bg-white/80 backdrop-blur-sm 
+                dark:bg-gray-800/80 shadow-lg hover:shadow-xl transform hover:scale-105
+                transition-all duration-300 group z-50"
       aria-label="Toggle theme"
     >
       {isDark ? (
         <svg
-          className="w-6 h-6 text-yellow-500 group-hover:rotate-90 transition-transform duration-500"
+          className="w-6 h-6 text-amber-500 group-hover:rotate-90 transition-transform duration-500"
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -34,7 +44,7 @@ export const ThemeToggle = () => {
         </svg>
       ) : (
         <svg
-          className="w-6 h-6 text-gray-900 group-hover:rotate-90 transition-transform duration-500"
+          className="w-6 h-6 text-blue-900 group-hover:rotate-90 transition-transform duration-500"
           fill="currentColor"
           viewBox="0 0 20 20"
         >

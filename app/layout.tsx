@@ -8,8 +8,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "✨ Magical Todo App",
-  description: "A magically crafted todo application by abdiesu04",
+  title: "Tahdda Todo List",
+  description: "A beautifully crafted todo application by abdiesu04",
 };
 
 export default function RootLayout({
@@ -18,14 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark:bg-gray-900">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.className} min-h-screen
-        bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))]
-        from-blue-100 via-purple-50 to-rose-100
-        dark:from-gray-900 dark:via-purple-900/20 dark:to-blue-900/20
+        bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50
+        dark:from-gray-950 dark:via-slate-900 dark:to-zinc-900
         transition-colors duration-500`}>
-        <div className="fixed inset-0 -z-10 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-        <div className="pointer-events-none fixed inset-0 -z-10 h-full bg-[radial-gradient(circle_500px_at_50%_200px,#c084fc20,transparent)]"></div>
+        <div className="fixed inset-0 -z-10 opacity-40 dark:opacity-20">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        </div>
+        <div className="fixed inset-0 -z-10 h-full bg-[radial-gradient(circle_800px_at_50%_-60%,#3b82f620,transparent)] dark:bg-[radial-gradient(circle_800px_at_50%_-60%,#3b82f610,transparent)]"></div>
         {children}
       </body>
     </html>

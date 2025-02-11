@@ -14,16 +14,16 @@ export const TodoFilter = ({ currentFilter, onFilterChange }: TodoFilterProps) =
         <button
           key={filter}
           onClick={() => onFilterChange(filter)}
-          className={`px-5 py-2.5 rounded-lg capitalize text-sm font-medium transition-all duration-300
+          className={`px-5 py-2.5 rounded-lg capitalize text-sm font-medium transition-all duration-200
             ${currentFilter === filter
-              ? 'bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white shadow-lg shadow-purple-500/20'
+              ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm'
               : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
-            } focus:outline-none focus:ring-2 focus:ring-purple-500/50 dark:focus:ring-purple-400/50`}
+            } focus:outline-none focus:ring-2 focus:ring-blue-500/50 dark:focus:ring-blue-400/50`}
         >
           {filter}
-          <span className="ml-1 text-xs">
-            {filter === currentFilter && '✨'}
-          </span>
+          {currentFilter === filter && (
+            <span className="ml-2 text-xs opacity-75">•</span>
+          )}
         </button>
       ))}
     </div>
