@@ -2,20 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Professional Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Staggered animations for todo items */
+.staggered-slide-in-0 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0ms forwards; }
+.staggered-slide-in-1 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 50ms forwards; }
+.staggered-slide-in-2 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 100ms forwards; }
+.staggered-slide-in-3 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 150ms forwards; }
+.staggered-slide-in-4 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 200ms forwards; }
+.staggered-slide-in-5 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 250ms forwards; }
+.staggered-slide-in-6 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 300ms forwards; }
+.staggered-slide-in-7 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 350ms forwards; }
+.staggered-slide-in-8 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 400ms forwards; }
+.staggered-slide-in-9 { animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 450ms forwards; }
+
+.animate-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.1) 50%, 
+    rgba(255,255,255,0) 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 100vh;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 transparent;
+}
+
+.dark * {
+  scrollbar-color: #475569 transparent;
+}
+
+/* Glass Effect */
+.glass {
+  @apply bg-white/[0.85] dark:bg-gray-900/[0.85];
+  backdrop-filter: blur(12px) saturate(180%);
+}
+
+/* Custom Selection */
+::selection {
+  @apply bg-blue-500/20 text-blue-900 dark:bg-blue-500/30 dark:text-blue-100;
+}
+
+/* Base styles */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply antialiased text-gray-900 dark:text-gray-100;
+  background: 
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.05), transparent 400px),
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.05), transparent 400px),
+    linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+}
+
+.dark body {
+  background: 
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.1), transparent 400px),
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent 400px),
+    linear-gradient(to bottom right, #0f172a, #1e293b);
+}
+
+/* Focus Styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900;
+}
+
+/* Transition Styles */
+.custom-transition {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply tracking-tight;
 }
